@@ -4,6 +4,7 @@ import com.example.Management.Entity.Users;
 import com.example.Management.Repository.UserDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,5 +56,18 @@ public class UserImpl implements UserServices{
         this.userDAO.deleteById(userId);
         log.info("{} user deleted", userId);
         return "User Deleted";
+    }
+
+    public List<Users> findUserByName(String name){
+        log.info("Getting user by name:{}",name);
+        return this.userDAO.findUserByName(name);
+    }
+    public List<Users> findUsersByPhoneNumber(String phone_number){
+        log.info("Getting user by the phone number: {}",phone_number);
+        return this.userDAO.findUsersByPhoneNumber(phone_number);
+    }
+    public List<Users> findUsersByEmail(String email){
+        log.info("Getting user by the email: ")
+        return this.userDAO.findUsersByEmail(email);
     }
 }
